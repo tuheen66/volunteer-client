@@ -1,10 +1,19 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const handleLogout = () => {
+    logOut().then(() => console.log("logged out successfully "));
+    navigate(location?.state ? location.state : "/");
+  };
 
   return (
     <div className="navbar bg-base-100 w-[80%] mx-auto shadow-xl shadow-gray-300">
@@ -26,6 +35,9 @@ const Navbar = () => {
               />
             </svg>
           </div>
+
+          {/* small screen */}
+
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
@@ -76,9 +88,10 @@ const Navbar = () => {
               >
                 My Profile
               </NavLink>
-              <ul className="p-2">
+              <ul className="p-2 z-999">
                 <li>
                   <NavLink
+                    to="/addVolunteers"
                     style={({ isActive, isTransitioning }) => {
                       return {
                         fontWeight: isActive ? "bold" : "",
@@ -115,8 +128,11 @@ const Navbar = () => {
         </div>
         <a className=" ml-2 text-2xl font-extrabold">BENEVO</a>
       </div>
+
+      {/* large screen */}
+
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 z-[1] ">
           <li>
             <NavLink
               to="/"
@@ -151,10 +167,10 @@ const Navbar = () => {
           <li>
             <details>
               <summary>My Profile</summary>
-              <ul className="p-2">
+              <ul className="p-2 bg-opacity-20">
                 <li>
                   <NavLink
-                    to="/addVolunteer"
+                    to="../addVolunteers"
                     style={({ isActive, isTransitioning }) => {
                       return {
                         fontWeight: isActive ? "bold" : "",
@@ -190,9 +206,21 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button className="btn  bg-[#ff5252] border-none text-white hover:bg-[#f3a683]">
-            Logout
-          </button>
+          <div className="flex items-center gap-4">
+            <div className=" relative group ">
+              <img className="w-14 rounded-full  " src={user.photoURL} />
+
+              <p className="opacity-0 group-hover:opacity-100 absolute w-44 text-center -bottom-4 right-16 text-xl text-gray-700 bg-gray-200 font-semibold">
+                {user.displayName}
+              </p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="btn  bg-[#ff5252] border-none text-white hover:bg-[#f3a683]"
+            >
+              Logout
+            </button>
+          </div>
         ) : (
           <Link to="/login">
             <button className="btn  bg-[#ff5252] border-none text-white hover:bg-[#f3a683]">

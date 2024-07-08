@@ -1,14 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import login from '../assets/images/login.jpg'
 import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  const { userSignIn, googleSignIn } = useContext(AuthContext);
+
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const { userSignIn, googleSignIn } = useContext(AuthContext);
+  const location = useLocation();
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -19,23 +23,21 @@ const Login = () => {
     const password = form.password.value;
 
     userSignIn(email, password)
+      .then((result) => {
+        console.log(result.user);
 
-    .then((result) => {
-      console.log(result.user);
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
 
-      navigate(location?.state ? location.state : "/");
-    })
-    .catch((error) => {
-      console.error(error);
-
-      Swal.fire({
-        title: "Ooops!",
-        text: "Please provide valid email and correct password",
-        icon: "error",
-        confirmButtonText: "Oh no!",
+        Swal.fire({
+          title: "Ooops!",
+          text: "Please provide valid email and correct password",
+          icon: "error", 
+          confirmButtonText: "Oh no!",
+        });
       });
-    });
-
   };
 
   const handleGoogleSignIn = () => {
@@ -81,10 +83,10 @@ const Login = () => {
               id="password"
             />
             <span
-              // onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowPassword(!showPassword)}
               className="absolute right-2 top-9"
             >
-              {/* {showPassword ? <FaRegEyeSlash /> : <FaRegEye />} */}
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
             </span>
           </div>
 

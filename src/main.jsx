@@ -10,6 +10,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 
 import AuthProvider from "./providers/AuthProvider";
+import AddVolunteers from "./Pages/AddVolunteers";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: "/addVolunteers",
+        element:<AddVolunteers></AddVolunteers>,
+      },
+
+
     ],
   },
 ]);
