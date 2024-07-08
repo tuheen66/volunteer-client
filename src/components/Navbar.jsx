@@ -70,7 +70,7 @@ const Navbar = () => {
                   };
                 }}
               >
-                Need Volunteer
+                Need Volunteers
               </NavLink>
             </li>
 
@@ -161,7 +161,7 @@ const Navbar = () => {
                 };
               }}
             >
-              Need Volunteer
+              Need Volunteers
             </NavLink>
           </li>
           <li>

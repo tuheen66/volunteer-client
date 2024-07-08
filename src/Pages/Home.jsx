@@ -7,7 +7,7 @@ const Home = () => {
 
   const volunteers = loadedVolunteers.slice(0, 6);
 
-  console.log(volunteers);
+  
 
   return (
     <div className="w-[80%] mx-auto">
@@ -27,7 +27,7 @@ const Home = () => {
           ))}
         </div>
         <div className="my-8 text-center w-full">
-          <Link>
+          <Link to='/needVolunteer'>
             <button className="btn bg-[#cc8e35] w-1/4 text-white text-xl hover:bg-[#ff5252]">
               See All
             </button>
