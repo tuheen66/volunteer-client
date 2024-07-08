@@ -2,7 +2,14 @@ import { Link } from "react-router-dom";
 // import login from '../assets/images/login.jpg'
 import { FcGoogle } from "react-icons/fc";
 
+
 const Login = () => {
+
+
+
+
+
+
   return (
     <div className="flex w-[80%] mx-auto items-center gap-12">
       <div className="w-[50%] bg-gray-200 p-8 mx-auto text-gray-700 my-8 rounded-lg">
