@@ -101,10 +101,10 @@ const AddVolunteers = () => {
               id="category"
               name="category"
             >
-              <option value="Community_Service">Community Service</option>
-              <option value="Animal_Welfare">Animal Welfare</option>
-              <option value="Disaster_Relief">Disaster Relief</option>
-              <option value="Environmental_Conservation">
+              <option value="Community Service">Community Service</option>
+              <option value="Animal Welfare">Animal Welfare</option>
+              <option value="Disaster Relief">Disaster Relief</option>
+              <option value="Environmental Conservation">
                 Environmental Conservation
               </option>
             </select>
