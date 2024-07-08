@@ -1,13 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import login from '../assets/images/login.jpg'
 import { FcGoogle } from "react-icons/fc";
-
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
 
+  const navigate = useNavigate()
 
+const {googleSignIn} = useContext(AuthContext)
 
+const handleGoogleSignIn = () => {
+  googleSignIn()
+    .then((result) => {
+      console.log(result.user);
 
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
 
   return (
@@ -62,7 +75,7 @@ const Login = () => {
           <p className="flex justify-center items-center">
             Sign In with
             <span
-              // onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
               className="text-[#eb4d4b] font-bold mx-2 cursor-pointer hover:underline"
             >
               <FcGoogle />
