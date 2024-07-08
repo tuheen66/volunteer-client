@@ -3,15 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const { userSignIn, googleSignIn } = useContext(AuthContext);
 
-const {googleSignIn} = useContext(AuthContext)
+  const handleSignIn = (e) => {
+    e.preventDefault();
 
-const handleGoogleSignIn = () => {
-  googleSignIn()
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    userSignIn(email, password)
+
     .then((result) => {
       console.log(result.user);
 
@@ -19,19 +27,35 @@ const handleGoogleSignIn = () => {
     })
     .catch((error) => {
       console.error(error);
-    });
-};
 
+      Swal.fire({
+        title: "Ooops!",
+        text: "Please provide valid email and correct password",
+        icon: "error",
+        confirmButtonText: "Oh no!",
+      });
+    });
+
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="flex w-[80%] mx-auto items-center gap-12">
       <div className="w-[50%] bg-gray-200 p-8 mx-auto text-gray-700 my-8 rounded-lg">
         <h2 className="text-center text-3xl font-bold">Please Login</h2>
 
-        <form
-          //    onSubmit={handleSignIn}
-          className="form-action"
-        >
+        <form onSubmit={handleSignIn} className="form-action">
           <div className="w-full">
             <label className="pl-4 " htmlFor="email">
               Your email:
