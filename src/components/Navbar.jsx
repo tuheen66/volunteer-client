@@ -167,7 +167,7 @@ const Navbar = () => {
           <li>
             <details>
               <summary>My Profile</summary>
-              <ul className="p-2 bg-opacity-20">
+              <ul className="p-2 bg-opacity-80 ">
                 <li>
                   <NavLink
                     to="../addVolunteers"

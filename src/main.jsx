@@ -13,6 +13,7 @@ import AuthProvider from "./providers/AuthProvider";
 import AddVolunteers from "./Pages/AddVolunteers";
 import NeedVolunteer from "./Pages/NeedVolunteer";
 import VolunteerPostDetails from "./Pages/VolunteerPostDetails";
+import ManageMyPost from "./Pages/ManageMyPost";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/addVolunteers",
         element: <AddVolunteers></AddVolunteers>,
+      },
+      {
+        path: "/managePost",
+        element: <ManageMyPost></ManageMyPost>
       },
       {
         path: "/needVolunteer",
