@@ -85,7 +85,7 @@ const ManageMyPost = () => {
 
                   <th>
                     <div className="join join-vertical">
-                      <Link to={`/updateTouristsSpot/${myPost._id}`}>
+                      <Link to={`/updatePost/${myPost._id}`}>
                         <button className="btn btn-sm bg-[#44bd32]  mb-2  text-white">
                           Update
                         </button>

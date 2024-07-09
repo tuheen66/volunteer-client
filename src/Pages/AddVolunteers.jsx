@@ -190,13 +190,6 @@ const AddVolunteers = () => {
                   dateFormat="dd/MM/yyyy"
                   minDate={new Date()}
                 />
-                {/* <input
-                  className="p-2 mr-4 rounded-lg border-2 border-gray-300"
-                  type="date"
-                  id="current_time"
-                  name="current_time"
-                  required
-                /> */}
               </div>
 
               <div>
