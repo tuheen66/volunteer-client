@@ -15,6 +15,7 @@ import NeedVolunteer from "./Pages/NeedVolunteer";
 import VolunteerPostDetails from "./Pages/VolunteerPostDetails";
 import ManageMyPost from "./Pages/ManageMyPost";
 import UpdateVolunteerPost from "./Pages/UpdateVolunteerPost";
+import BeAVolunteer from "./Pages/BeAVolunteer";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,12 @@ const router = createBrowserRouter([
       {
         path: "/managePost",
         element: <ManageMyPost></ManageMyPost>
+      },
+      {
+        path: "/beAVolunteer/:id",
+        element: <BeAVolunteer></BeAVolunteer>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteers/${params.id}`),
       },
       {
         path: "/needVolunteer",

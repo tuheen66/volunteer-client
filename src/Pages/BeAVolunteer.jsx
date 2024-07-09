@@ -1,28 +1,30 @@
-import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
 
-const UpdateVolunteerPost = () => {
-  const { user } = useContext(AuthContext);
-
-  const [deadline, setDeadline] = useState(null);
-  const [currentTime, setCurrentTime] = useState(null);
-
+const BeAVolunteer = () => {
   const loadedVolunteerPost = useLoaderData();
 
+  const navigate = useNavigate();
+
+  const locations = useLocation();
+
+  const { user } = useContext(AuthContext);
+
   const {
-    _id,
     post_title,
     photo,
     category,
     location,
     volunteers,
+    userName,
+    email,
+    deadline_time,
     description,
   } = loadedVolunteerPost;
 
-  const handleUpdatePost = (e) => {
+  const handleRequest = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -35,10 +37,13 @@ const UpdateVolunteerPost = () => {
     const description = form.description.value;
     const userName = form.userName.value;
     const email = form.email.value;
-    const current_time = currentTime;
-    const deadline_time = deadline;
+    const deadline_time = form.deadline.value;
+    const volunteerName = form.volunteerName.value;
+    const volunteerEmail = form.volunteerEmail.value;
+    const suggestion = form.suggestion.value;
+    const status = form.status.value;
 
-    const updatedPost = {
+    const requested = {
       post_title,
       photo,
       category,
@@ -47,24 +52,38 @@ const UpdateVolunteerPost = () => {
       description,
       userName,
       email,
-      current_time,
       deadline_time,
+      volunteerName,
+      volunteerEmail,
+      status,
+      suggestion,
     };
 
-    fetch(`http://localhost:5000/volunteers/${_id}`, {
-      method: "PUT",
+    if (email === volunteerEmail) {
+      Swal.fire({
+        icon: "error",
+        title: "Sorry...",
+        text: "You cannot request to be volunteer in your own post",
+      });
+      navigate(locations?.state ? locations.state : "/");
+     
+    }
+
+    fetch("http://localhost:5000/requested", {
+      method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(updatedPost),
+      body: JSON.stringify(requested),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.modifiedCount > 0) {
+
+        if (data.insertedId) {
           Swal.fire({
             title: "success!",
-            text: "Volunteer post updated successfully",
+            text: "Volunteer request added successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -75,12 +94,12 @@ const UpdateVolunteerPost = () => {
   return (
     <div className="mb-8">
       <h2 className="text-3xl font-bold my-4 text-center text-gray-700">
-        Update Volunteer Post
+        Be A Volunteer
       </h2>
 
       <div className="w-[80%] gap-16 justify-between items-center mx-auto">
         <div className="   p-8 w-1/2 border-2 mx-auto border-gray-300 rounded-lg">
-          <form onSubmit={handleUpdatePost}>
+          <form onSubmit={handleRequest}>
             <label htmlFor="title">Post Title:</label>
             <input
               className="w-full p-2 rounded-lg border-2 border-gray-300"
@@ -90,6 +109,7 @@ const UpdateVolunteerPost = () => {
               id="title"
               name="title"
               required
+              disabled
             />
             <br />
             <br />
@@ -103,6 +123,7 @@ const UpdateVolunteerPost = () => {
               id="image_url"
               name="image"
               required
+              disabled
             />
             <br />
             <br />
@@ -113,6 +134,7 @@ const UpdateVolunteerPost = () => {
               id="category"
               name="category"
               defaultValue={category}
+              disabled
             >
               <option value="Community Service">Community Service</option>
               <option value="Animal Welfare">Animal Welfare</option>
@@ -135,6 +157,7 @@ const UpdateVolunteerPost = () => {
                   id="location"
                   name="location"
                   required
+                  disabled
                 />
               </div>
               <div className="w-1/2">
@@ -149,6 +172,7 @@ const UpdateVolunteerPost = () => {
                   id="number-of-volunteers"
                   name="volunteers"
                   required
+                  disabled
                 />
               </div>
             </div>
@@ -159,8 +183,9 @@ const UpdateVolunteerPost = () => {
               id="description"
               name="description"
               defaultValue={description}
-              rows="4"
+              rows="2"
               required
+              disabled
             ></textarea>
             <br />
             <br />
@@ -170,7 +195,7 @@ const UpdateVolunteerPost = () => {
             <label htmlFor="user-name">Organizer Name:</label>
             <input
               className="w-full p-2 rounded-lg border-2 border-gray-300"
-              defaultValue={user?.displayName}
+              defaultValue={userName}
               type="text"
               id="user-name"
               name="userName"
@@ -184,7 +209,7 @@ const UpdateVolunteerPost = () => {
             <label htmlFor="email">Organizer Email:</label>
             <input
               className="w-full p-2 rounded-lg border-2 border-gray-300"
-              defaultValue={user?.email}
+              defaultValue={email}
               type="email"
               id="email"
               name="email"
@@ -195,37 +220,77 @@ const UpdateVolunteerPost = () => {
             <br />
             <div className="flex justify-between mb-4">
               <div>
-                <label htmlFor="current_time">Current Time: </label>
-                <br />
-
-                <DatePicker
-                  className="border-2 border-gray-300 required rounded-lg"
-                  selected={currentTime}
-                  showIcon
-                  onChange={(date) => setCurrentTime(date)}
-                  dateFormat="dd/MM/yyyy"
-                  minDate={new Date()}
-                />
-              </div>
-
-              <div>
                 <label>Deadline: </label>
                 <br />
-                <DatePicker
-                  className="border-2 border-gray-300 rounded-lg"
-                  selected={deadline}
-                  showIcon
-                  onChange={(date) => setDeadline(date)}
-                  dateFormat="dd/MM/yyyy"
-                  minDate={new Date()}
+                <input
+                  className="w-full p-2 rounded-lg border-2 border-gray-300"
+                  defaultValue={deadline_time}
+                  type="text"
+                  id="deadline_time"
+                  name="deadline"
+                  required
+                  disabled
                 />
               </div>
             </div>
 
+            <label htmlFor="volunteer-name">Volunteer Name:</label>
+            <input
+              className="w-full p-2 rounded-lg border-2 border-gray-300"
+              defaultValue={user?.displayName}
+              type="text"
+              id="volunteer-name"
+              name="volunteerName"
+              required
+              disabled
+            />
+
+            <br />
+            <br />
+
+            <label htmlFor="volunteerEmail">Volunteer Email:</label>
+            <input
+              className="w-full p-2 rounded-lg border-2 border-gray-300"
+              defaultValue={user?.email}
+              type="email"
+              id="volunteerEmail"
+              name="volunteerEmail"
+              required
+              disabled
+            />
+            <br />
+            <br />
+
+            <label htmlFor="suggestion">Suggestion</label>
+            <input
+              className="w-full p-2 rounded-lg border-2 border-gray-300"
+              placeholder="suggestion"
+              type="text"
+              id="suggestion"
+              name="suggestion"
+              required
+            />
+
+            <br />
+            <br />
+            <label htmlFor="status">Status</label>
+            <input
+              className="w-full p-2 rounded-lg border-2 border-gray-300"
+              defaultValue="Requested"
+              type="text"
+              id="status"
+              name="status"
+              required
+              disabled
+            />
+
+            <br />
+            <br />
+
             <input
               className="btn w-full bg-[#ff5252] text-white hover:bg-[#cc8e35]"
               type="submit"
-              value="Submit"
+              value="Request"
             />
           </form>
         </div>
@@ -234,4 +299,4 @@ const UpdateVolunteerPost = () => {
   );
 };
 
-export default UpdateVolunteerPost;
+export default BeAVolunteer;

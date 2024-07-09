@@ -48,7 +48,7 @@ const ManageMyPost = () => {
   return (
     <div className="w-[80%] mx-auto">
       <h2 className="my-8 text-center font-bold text-4xl">
-        List of Tourists Spots by - {user?.displayName}
+        List of Volunteer posts by - {user?.displayName}
       </h2>
       <div>
         <div className="overflow-x-auto">
