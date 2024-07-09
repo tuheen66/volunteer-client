@@ -16,6 +16,8 @@ import VolunteerPostDetails from "./Pages/VolunteerPostDetails";
 import ManageMyPost from "./Pages/ManageMyPost";
 import UpdateVolunteerPost from "./Pages/UpdateVolunteerPost";
 import BeAVolunteer from "./Pages/BeAVolunteer";
+import MyVolunteerPosts from "./Pages/MyVolunteerPosts";
+import MyRequestedPosts from "./Pages/MyRequestedPosts";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +43,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/managePost",
-        element: <ManageMyPost></ManageMyPost>
+        element: <ManageMyPost></ManageMyPost>,
+        children:[
+          {
+            index:true,
+            element:<MyVolunteerPosts></MyVolunteerPosts>
+          },
+          {
+            path:"requestedPost",
+            element:<MyRequestedPosts></MyRequestedPosts>
+          }
+        ]
       },
       {
         path: "/beAVolunteer/:id",
