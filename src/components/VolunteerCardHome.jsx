@@ -5,7 +5,7 @@ const VolunteerCardHome = ({ volunteer }) => {
 
 
     
-  const { photo, post_title, category, deadline_time } = volunteer;
+  const { _id, photo, post_title, category, deadline_time } = volunteer;
 
   return (
     <div className="card card-compact  bg-base-100 shadow-xl">
@@ -22,7 +22,7 @@ const VolunteerCardHome = ({ volunteer }) => {
           <span className="font-bold">Deadline:</span> {deadline_time}
         </p>
         <div className=" flex justify-center gap-4 mt-4">
-          <Link className="w-full">
+          <Link to={`viewDetails/${_id}`} className="w-full">
             <button className="btn bg-[#ff5252] btn-sm w-full text-white">
               View Details
             </button>
