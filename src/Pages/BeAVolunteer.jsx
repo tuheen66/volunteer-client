@@ -66,7 +66,7 @@ const BeAVolunteer = () => {
         text: "You cannot request to be volunteer in your own post",
       });
       navigate(locations?.state ? locations.state : "/");
-     
+      return;
     }
 
     fetch("http://localhost:5000/requested", {

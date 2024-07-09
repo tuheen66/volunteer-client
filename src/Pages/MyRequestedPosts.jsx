@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyRequestedPosts = () => {
   const { user } = useContext(AuthContext);
@@ -13,11 +14,35 @@ const MyRequestedPosts = () => {
       .then((data) => setMyPosts(data));
   }, [url]);
 
+  const handleCancel = (id) => {
+    Swal.fire({
+      title: "Are you sure you want to Cancel?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/requested/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your coffee has been deleted.", "success");
 
-  
+              const remainingVolunteerPosts = myPosts.filter(
+                (myPost) => myPost._id !== id
+              );
 
-
-
+              setMyPosts(remainingVolunteerPosts);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div>
@@ -60,7 +85,9 @@ const MyRequestedPosts = () => {
 
                     <th>
                       <div className="join join-vertical">
-                        <button className="btn btn-sm text-white  bg-[#ff5252]">
+                        <button 
+                        onClick={()=>handleCancel(myPost._id)}
+                        className="btn btn-sm text-white  bg-[#ff5252]">
                           Cancel
                         </button>
                       </div>
