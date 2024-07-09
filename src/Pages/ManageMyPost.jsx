@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
@@ -14,13 +15,35 @@ const ManageMyPost = () => {
       .then((data) => setMyPosts(data));
   }, [url]);
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure you want to delete?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/volunteers/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your coffee has been deleted.", "success");
 
+              const remainingVolunteerPosts = myPosts.filter(
+                (myPost) => myPost._id !== id
+              );
 
-  const handleDelete=()=>{
-
-  }
-
-
+              setMyPosts(remainingVolunteerPosts);
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="w-[80%] mx-auto">
