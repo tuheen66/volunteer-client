@@ -21,6 +21,7 @@ import MyRequestedPosts from "./Pages/MyRequestedPosts";
 import GridLayout from "./components/GridLayout";
 import TableLayout from "./components/TableLayout";
 import { HelmetProvider } from "react-helmet-async";
+import PrivateRoute from "./Routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -42,11 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/addVolunteers",
-        element: <AddVolunteers></AddVolunteers>,
+        element: (
+          <PrivateRoute>
+            <AddVolunteers></AddVolunteers>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/managePost",
-        element: <ManageMyPost></ManageMyPost>,
+        element: (
+          <PrivateRoute>
+            <ManageMyPost></ManageMyPost>
+          </PrivateRoute>
+        ),
         children: [
           {
             index: true,
@@ -89,7 +98,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/updatePost/:id",
-        element: <UpdateVolunteerPost></UpdateVolunteerPost>,
+        element: (
+          <PrivateRoute>
+            <UpdateVolunteerPost></UpdateVolunteerPost>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/volunteers/${params.id}`),
       },
