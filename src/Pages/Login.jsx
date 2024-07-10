@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { userSignIn, googleSignIn } = useContext(AuthContext);
@@ -54,6 +55,9 @@ const Login = () => {
 
   return (
     <div className="flex w-[80%] mx-auto items-center gap-12">
+      <Helmet>
+        <title>Benevo | Login</title>
+      </Helmet>
       <div className="w-[50%] bg-gray-200 p-8 mx-auto text-gray-700 my-8 rounded-lg">
         <h2 className="text-center text-3xl font-bold">Please Login</h2>
 

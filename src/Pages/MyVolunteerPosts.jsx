@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MyVolunteerPosts = () => {
   const { user } = useContext(AuthContext);
@@ -47,6 +48,9 @@ const MyVolunteerPosts = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Benevo | My Volunteer Posts</title>
+      </Helmet>
       <div className="w-[80%] mx-auto">
         <h2 className="my-8 text-center font-bold text-4xl">
           List of Volunteer posts by - {user?.displayName}

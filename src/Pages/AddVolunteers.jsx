@@ -3,6 +3,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddVolunteers = () => {
   const [deadline, setDeadline] = useState(null);
@@ -64,6 +65,9 @@ const AddVolunteers = () => {
 
   return (
     <div className="mb-8">
+      <Helmet>
+        <title>Benevo | Add Volunteer</title>
+      </Helmet>
       <h2 className="text-3xl font-bold my-4 text-center text-gray-700">
         Add a new Volunteer Post
       </h2>

@@ -20,6 +20,7 @@ import MyVolunteerPosts from "./Pages/MyVolunteerPosts";
 import MyRequestedPosts from "./Pages/MyRequestedPosts";
 import GridLayout from "./components/GridLayout";
 import TableLayout from "./components/TableLayout";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -99,7 +100,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </AuthProvider>
   </React.StrictMode>
 );

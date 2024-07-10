@@ -4,6 +4,7 @@ import { updateProfile } from "firebase/auth";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 // import register from "../assets/images/register.jpg";
 
 const Register = () => {
@@ -51,6 +52,9 @@ const Register = () => {
 
   return (
     <div className=" w-[80%] mx-auto items-center justify-center">
+      <Helmet>
+        <title>Benevo | Register</title>
+      </Helmet>
       <div className="w-[50%] bg-gray-200 p-8  mx-auto text-gray-700 my-8 rounded-lg">
         <h2 className="text-center text-3xl font-bold">Please Register</h2>
 

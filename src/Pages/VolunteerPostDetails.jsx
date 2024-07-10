@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router-dom";
 
 const VolunteerPostDetails = () => {
@@ -17,6 +18,9 @@ const VolunteerPostDetails = () => {
 
   return (
     <div className="w-[80%] mx-auto mb-8 ">
+      <Helmet>
+        <title>Benevo | Volunteer Post Details</title>
+      </Helmet>
       <h2 className="font-bold text-3xl text-center my-8">{post_title}</h2>
       <div className="grid lg:grid-cols-2 gap-8 mb-4 items-center p-4">
         <div className="">

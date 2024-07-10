@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, Outlet } from "react-router-dom";
 
 const ManageMyPost = () => {
@@ -6,6 +7,9 @@ const ManageMyPost = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Benevo | Manage My Post</title>
+      </Helmet>
       <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-gray-100 dark:text-gray-800">
         <Link
           to=""

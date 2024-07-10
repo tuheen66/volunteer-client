@@ -3,6 +3,7 @@ import BannerSlider from "../components/BannerSlider";
 import VolunteerCardHome from "../components/VolunteerCardHome";
 import NewsLetters from "../components/NewsLetters";
 import Slider from "../components/Slider";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const loadedVolunteers = useLoaderData();
@@ -11,6 +12,10 @@ const Home = () => {
 
   return (
     <div className="w-[80%] mx-auto">
+      <Helmet>
+        <title>Benevo | Home</title>
+      </Helmet>
+
       <BannerSlider></BannerSlider>
 
       <div className="mt-12">
@@ -34,9 +39,10 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <h2 className="text-center text-2xl font-semibold">Subscribe to our Newsletter to know about our upcoming charity events</h2>
+      <h2 className="text-center text-2xl font-semibold">
+        Subscribe to our Newsletter to know about our upcoming charity events
+      </h2>
       <div className="mb-8  mx-auto flex justify-between items-center pl-8 ">
-      
         <NewsLetters></NewsLetters>
         <div className="w-[66%]">
           <Slider></Slider>

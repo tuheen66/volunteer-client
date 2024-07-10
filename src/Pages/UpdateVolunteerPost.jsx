@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const UpdateVolunteerPost = () => {
   const { user } = useContext(AuthContext);
@@ -74,6 +75,9 @@ const UpdateVolunteerPost = () => {
 
   return (
     <div className="mb-8">
+      <Helmet>
+        <title>Benevo | Update Volunteer Post</title>
+      </Helmet>
       <h2 className="text-3xl font-bold my-4 text-center text-gray-700">
         Update Volunteer Post
       </h2>

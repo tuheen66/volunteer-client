@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const BeAVolunteer = () => {
   const loadedVolunteerPost = useLoaderData();
@@ -93,6 +94,9 @@ const BeAVolunteer = () => {
 
   return (
     <div className="mb-8">
+      <Helmet>
+        <title>Benevo | Be A Volunteer</title>
+      </Helmet>
       <h2 className="text-3xl font-bold my-4 text-center text-gray-700">
         Be A Volunteer
       </h2>

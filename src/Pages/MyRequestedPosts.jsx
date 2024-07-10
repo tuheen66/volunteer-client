@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyRequestedPosts = () => {
   const { user } = useContext(AuthContext);
@@ -46,6 +47,9 @@ const MyRequestedPosts = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Benevo | My Requested Posts</title>
+      </Helmet>
       <div className="w-[80%] mx-auto">
         <h2 className="my-8 text-center font-bold text-4xl">
           List of Requested posts by - {user?.displayName}

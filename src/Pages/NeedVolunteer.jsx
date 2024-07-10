@@ -2,32 +2,28 @@ import { createContext, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import { MdTableRows } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 export const SearchContext = createContext(null);
 
 const NeedVolunteer = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
-  const [searchResult, setSearchResult] = useState("");
+  
 
-  const [volunteers, setVolunteers] = useState([])
+  const info={}
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const searchValue = e.target.search.value;
-    setSearchResult(searchValue);
-  };
 
-  const info = {
-    searchResult, volunteers, setVolunteers
-  }
 
   return (
     <div className="w-[80%] mx-auto">
+      <Helmet>
+        <title>Benevo | Need Volunteer</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center my-8">Need Volunteers</h2>
 
       <div className="my-8 text-center">
-        <form onSubmit={handleSearch}>
+        <form >
           <input
             className="border-2 border-gray-300 px-4 py-3 rounded-lg"
             type="text"
