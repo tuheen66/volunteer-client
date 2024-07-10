@@ -8,7 +8,7 @@ const NeedVolunteerCard = ({ volunteer }) => {
   return (
     <div className="card card-compact  bg-base-100 shadow-xl">
       <figure>
-        <img src={photo} alt="Shoes" />
+        <img src={photo} alt="" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{post_title}</h2>

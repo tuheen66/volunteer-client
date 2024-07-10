@@ -18,6 +18,8 @@ import UpdateVolunteerPost from "./Pages/UpdateVolunteerPost";
 import BeAVolunteer from "./Pages/BeAVolunteer";
 import MyVolunteerPosts from "./Pages/MyVolunteerPosts";
 import MyRequestedPosts from "./Pages/MyRequestedPosts";
+import GridLayout from "./components/GridLayout";
+import TableLayout from "./components/TableLayout";
 
 const router = createBrowserRouter([
   {
@@ -44,16 +46,16 @@ const router = createBrowserRouter([
       {
         path: "/managePost",
         element: <ManageMyPost></ManageMyPost>,
-        children:[
+        children: [
           {
-            index:true,
-            element:<MyVolunteerPosts></MyVolunteerPosts>
+            index: true,
+            element: <MyVolunteerPosts></MyVolunteerPosts>,
           },
           {
-            path:"requestedPost",
-            element:<MyRequestedPosts></MyRequestedPosts>
-          }
-        ]
+            path: "requestedPost",
+            element: <MyRequestedPosts></MyRequestedPosts>,
+          },
+        ],
       },
       {
         path: "/beAVolunteer/:id",
@@ -64,8 +66,20 @@ const router = createBrowserRouter([
       {
         path: "/needVolunteer",
         element: <NeedVolunteer></NeedVolunteer>,
-        loader: () => fetch("http://localhost:5000/volunteers"),
+        children: [
+          {
+            index: true,
+            element: <GridLayout></GridLayout>,
+            loader: () => fetch("http://localhost:5000/volunteers"),
+          },
+          {
+            path: "tableLayout",
+            element: <TableLayout></TableLayout>,
+            loader: () => fetch("http://localhost:5000/volunteers"),
+          },
+        ],
       },
+
       {
         path: "/viewDetails/:id",
         element: <VolunteerPostDetails></VolunteerPostDetails>,

@@ -67,33 +67,40 @@ const MyRequestedPosts = () => {
               </thead>
 
               <tbody>
-                {myPosts.map((myPost) => (
-                  <tr key={myPost._id}>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className=" w-16 h-16">
-                            <img src={myPost.photo} alt="" />
+                {myPosts.length > 0 ? (
+                  myPosts.map((myPost) => (
+                    <tr key={myPost._id}>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className=" w-16 h-16">
+                              <img src={myPost.photo} alt="" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>{myPost.post_title}</td>
-                    <td>{myPost.location} </td>
-                    <td>{myPost.volunteers} </td>
-                    <td>{myPost.deadline_time} </td>
+                      </td>
+                      <td>{myPost.post_title}</td>
+                      <td>{myPost.location} </td>
+                      <td>{myPost.volunteers} </td>
+                      <td>{myPost.deadline_time} </td>
 
-                    <th>
-                      <div className="join join-vertical">
-                        <button 
-                        onClick={()=>handleCancel(myPost._id)}
-                        className="btn btn-sm text-white  bg-[#ff5252]">
-                          Cancel
-                        </button>
-                      </div>
-                    </th>
-                  </tr>
-                ))}
+                      <th>
+                        <div className="join join-vertical">
+                          <button
+                            onClick={() => handleCancel(myPost._id)}
+                            className="btn btn-sm text-white  bg-[#ff5252]"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </th>
+                    </tr>
+                  ))
+                ) : (
+                  <div className="text-center mt-20 text-4xl text-red-500 font-bold">
+                    <p>You do not have any requested volunteer posts</p>
+                  </div>
+                )}
               </tbody>
             </table>
           </div>

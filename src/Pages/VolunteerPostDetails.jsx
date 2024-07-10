@@ -13,7 +13,8 @@ const VolunteerPostDetails = () => {
     deadline_time,
   } = postDetails;
 
-  
+  const needVolunteers = parseFloat(volunteers);
+
   return (
     <div className="w-[80%] mx-auto mb-8 ">
       <h2 className="font-bold text-3xl text-center my-8">{post_title}</h2>
@@ -50,11 +51,18 @@ const VolunteerPostDetails = () => {
               <span className="font-bold ">Description:</span> {description}
             </p>
           </div>
-          <Link to={`/beAVolunteer/${_id}`}>
-            <button className="btn bg-[#ff5252] text-white ">
-              Be a Volunteer
-            </button>
-          </Link>
+
+          <div>
+            {needVolunteers === 0 ? (
+              <p className="ml-4 text-red-400 font-bold">NB: No Volunteers needed</p>
+            ) : (
+              <Link to={`/beAVolunteer/${_id}`}>
+                <button className="btn bg-[#ff5252] text-white ">
+                  Be a Volunteer
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>
