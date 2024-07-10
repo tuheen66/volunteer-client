@@ -22,11 +22,13 @@ import GridLayout from "./components/GridLayout";
 import TableLayout from "./components/TableLayout";
 import { HelmetProvider } from "react-helmet-async";
 import PrivateRoute from "./Routes/PrivateRoute";
+import ErrorPage from "./Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -92,7 +94,11 @@ const router = createBrowserRouter([
 
       {
         path: "/viewDetails/:id",
-        element: <VolunteerPostDetails></VolunteerPostDetails>,
+        element: (
+          <PrivateRoute>
+            <VolunteerPostDetails></VolunteerPostDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/volunteers/${params.id}`),
       },
