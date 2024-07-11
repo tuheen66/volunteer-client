@@ -9,7 +9,7 @@ const MyVolunteerPosts = () => {
   const { user } = useContext(AuthContext);
   const [myPosts, setMyPosts] = useState([]);
 
-  const url = `http://localhost:5000/volunteer?email=${user?.email}`;
+  const url = `https://volunteer-management-server-eight.vercel.app/volunteer?email=${user?.email}`;
 
   useEffect(() => {
     axios.get(url, { withCredentials: true }).then((res) => {
@@ -32,9 +32,12 @@ const MyVolunteerPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/volunteers/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://volunteer-management-server-eight.vercel.app/volunteers/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

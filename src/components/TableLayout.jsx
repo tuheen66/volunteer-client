@@ -22,8 +22,7 @@ const TableLayout = () => {
 
   return (
     <div className="">
-      <h2 className="text-3xl font-bold text-center mb-4">Need Volunteers</h2>
-
+     
       <div className="text-center mb-8">
         <form onSubmit={handleSearch}>
           <input

@@ -16,7 +16,8 @@ const NeedVolunteer = () => {
 
 
   return (
-    <div className="w-[80%] mx-auto mt-8">
+    <div className="w-[80%] mx-auto my-8">
+       <h2 className="text-3xl font-bold text-center mb-4">Need Volunteers</h2>
       <Helmet>
         <title>Benevo | Need Volunteer</title>
       </Helmet>

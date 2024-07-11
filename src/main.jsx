@@ -28,12 +28,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/volunteers"),
+        loader: () =>
+          fetch(
+            "https://volunteer-management-server-eight.vercel.app/volunteers"
+          ),
       },
       {
         path: "/login",
@@ -73,7 +76,9 @@ const router = createBrowserRouter([
         path: "/beAVolunteer/:id",
         element: <BeAVolunteer></BeAVolunteer>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteers/${params.id}`),
+          fetch(
+            `https://volunteer-management-server-eight.vercel.app/volunteers/${params.id}`
+          ),
       },
       {
         path: "/needVolunteer",
@@ -82,12 +87,18 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <GridLayout></GridLayout>,
-            loader: () => fetch("http://localhost:5000/volunteers"),
+            loader: () =>
+              fetch(
+                "https://volunteer-management-server-eight.vercel.app/volunteers"
+              ),
           },
           {
             path: "tableLayout",
             element: <TableLayout></TableLayout>,
-            loader: () => fetch("http://localhost:5000/volunteers"),
+            loader: () =>
+              fetch(
+                "https://volunteer-management-server-eight.vercel.app/volunteers"
+              ),
           },
         ],
       },
@@ -100,7 +111,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteers/${params.id}`),
+          fetch(
+            `https://volunteer-management-server-eight.vercel.app/volunteers/${params.id}`
+          ),
       },
       {
         path: "/updatePost/:id",
@@ -110,7 +123,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteers/${params.id}`),
+          fetch(
+            `https://volunteer-management-server-eight.vercel.app/volunteers/${params.id}`
+          ),
       },
     ],
   },

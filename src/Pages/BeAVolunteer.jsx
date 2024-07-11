@@ -70,7 +70,7 @@ const BeAVolunteer = () => {
       return;
     }
 
-    fetch("http://localhost:5000/requested", {
+    fetch("https://volunteer-management-server-eight.vercel.app/requested", {
       method: "POST",
       headers: {
         "content-type": "application/json",

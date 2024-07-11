@@ -4,6 +4,7 @@ import VolunteerCardHome from "../components/VolunteerCardHome";
 import NewsLetters from "../components/NewsLetters";
 import Slider from "../components/Slider";
 import { Helmet } from "react-helmet-async";
+import WeServe from "../components/WeServe";
 
 const Home = () => {
   const loadedVolunteers = useLoaderData();
@@ -47,7 +48,11 @@ const Home = () => {
         <div className="w-full lg:w-[66%]">
           <Slider></Slider>
         </div>
+        
       </div>
+      <div>
+          <WeServe></WeServe>
+        </div>
     </div>
   );
 };

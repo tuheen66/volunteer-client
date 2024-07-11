@@ -40,7 +40,7 @@ const AddVolunteers = () => {
     };
     console.log(newVolunteer);
 
-    fetch("http://localhost:5000/volunteers", {
+    fetch("https://volunteer-management-server-eight.vercel.app/volunteers", {
       method: "POST",
       headers: {
         "content-type": "application/json",

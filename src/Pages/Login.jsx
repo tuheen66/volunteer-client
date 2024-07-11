@@ -32,7 +32,11 @@ const Login = () => {
         const user = { email };
 
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post(
+            "https://volunteer-management-server-eight.vercel.app/jwt",
+            user,
+            { withCredentials: true }
+          )
           .then((res) => {
             console.log(res.data);
             if (res.data.success) {

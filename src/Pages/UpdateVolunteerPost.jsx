@@ -52,13 +52,16 @@ const UpdateVolunteerPost = () => {
       deadline_time,
     };
 
-    fetch(`http://localhost:5000/volunteers/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedPost),
-    })
+    fetch(
+      `https://volunteer-management-server-eight.vercel.app/volunteers/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedPost),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
