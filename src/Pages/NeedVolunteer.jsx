@@ -16,11 +16,11 @@ const NeedVolunteer = () => {
 
 
   return (
-    <div className="w-[80%] mx-auto">
+    <div className="w-[80%] mx-auto mt-8">
       <Helmet>
         <title>Benevo | Need Volunteer</title>
       </Helmet>
-      <h2 className="text-3xl font-bold text-center my-8">Need Volunteers</h2>
+      {/* <h2 className="text-3xl font-bold text-center my-8">Need Volunteers</h2>
 
       <div className="my-8 text-center">
         <form >
@@ -36,7 +36,7 @@ const NeedVolunteer = () => {
             value="Search"
           />
         </form>
-      </div>
+      </div> */}
 
       <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-end flex-nowrap ">
         <Link

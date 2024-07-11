@@ -4,7 +4,24 @@ const TableLayout = () => {
   const volunteers = useLoaderData();
 
   return (
-    <div>
+    <div className="">
+      <h2 className="text-3xl font-bold text-center mb-4">Need Volunteers</h2>
+
+<div className="text-center mb-8">
+  <form >
+    <input
+      className="border-2 border-gray-300 px-4 py-3 rounded-lg"
+      type="text"
+      name="search"
+      placeholder="search by post title"
+    />
+    <input
+      className="btn bg-[#ff5252] text-white hover:bg-[#cc8e35]"
+      type="submit"
+      value="Search"
+    />
+  </form>
+</div>
       <div>
         <div>
           <div className="overflow-x-auto">

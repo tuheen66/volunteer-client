@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const MyRequestedPosts = () => {
   const { user } = useContext(AuthContext);
@@ -10,9 +11,13 @@ const MyRequestedPosts = () => {
   const url = `http://localhost:5000/requested?volunteerEmail=${user?.email}`;
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setMyPosts(data));
+    axios.get(url, { withCredentials: true }).then((res) => {
+      setMyPosts(res.data);
+    });
+
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => setMyPosts(data));
   }, [url]);
 
   const handleCancel = (id) => {

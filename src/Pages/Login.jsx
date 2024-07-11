@@ -6,6 +6,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Login = () => {
   const { userSignIn, googleSignIn } = useContext(AuthContext);
@@ -25,9 +26,19 @@ const Login = () => {
 
     userSignIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
 
-        navigate(location?.state ? location.state : "/");
+        const user = { email };
+
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate(location?.state ? location.state : "/");
+            }
+          });
       })
       .catch((error) => {
         console.error(error);
@@ -35,7 +46,7 @@ const Login = () => {
         Swal.fire({
           title: "Ooops!",
           text: "Please provide valid email and correct password",
-          icon: "error", 
+          icon: "error",
           confirmButtonText: "Oh no!",
         });
       });

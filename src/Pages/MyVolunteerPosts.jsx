@@ -3,6 +3,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const MyVolunteerPosts = () => {
   const { user } = useContext(AuthContext);
@@ -11,9 +12,13 @@ const MyVolunteerPosts = () => {
   const url = `http://localhost:5000/volunteer?email=${user?.email}`;
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setMyPosts(data));
+    axios.get(url, { withCredentials: true }).then((res) => {
+      setMyPosts(res.data);
+    });
+
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => setMyPosts(data));
   }, [url]);
 
   const handleDelete = (id) => {
@@ -72,39 +77,45 @@ const MyVolunteerPosts = () => {
               </thead>
 
               <tbody>
-                {myPosts.map((myPost) => (
-                  <tr key={myPost._id}>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className=" w-16 h-16">
-                            <img src={myPost.photo} alt="" />
+                {myPosts.length > 0 ? (
+                  myPosts.map((myPost) => (
+                    <tr key={myPost._id}>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className=" w-16 h-16">
+                              <img src={myPost.photo} alt="" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>{myPost.post_title}</td>
-                    <td>{myPost.location} </td>
-                    <td>{myPost.volunteers} </td>
-                    <td>{myPost.deadline_time} </td>
+                      </td>
+                      <td>{myPost.post_title}</td>
+                      <td>{myPost.location} </td>
+                      <td>{myPost.volunteers} </td>
+                      <td>{myPost.deadline_time} </td>
 
-                    <th>
-                      <div className="join join-vertical">
-                        <Link to={`/updatePost/${myPost._id}`}>
-                          <button className="btn btn-sm bg-[#44bd32]  mb-2  text-white">
-                            Update
+                      <th>
+                        <div className="join join-vertical">
+                          <Link to={`/updatePost/${myPost._id}`}>
+                            <button className="btn btn-sm bg-[#44bd32]  mb-2  text-white">
+                              Update
+                            </button>
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(myPost._id)}
+                            className="btn btn-sm text-white  bg-[#ff5252]"
+                          >
+                            Delete
                           </button>
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(myPost._id)}
-                          className="btn btn-sm text-white  bg-[#ff5252]"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </th>
-                  </tr>
-                ))}
+                        </div>
+                      </th>
+                    </tr>
+                  ))
+                ) : (
+                  <div className="text-center mt-20 text-4xl text-red-500 font-bold">
+                    <p>You do not have any need volunteer posts</p>
+                  </div>
+                )}
               </tbody>
             </table>
           </div>
