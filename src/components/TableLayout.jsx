@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const TableLayout = () => {
   const loadedVolunteers = useLoaderData();
+
+  
 
   const [volunteers, setVolunteers] = useState(loadedVolunteers);
 
@@ -22,7 +24,6 @@ const TableLayout = () => {
 
   return (
     <div className="">
-     
       <div className="text-center mb-8">
         <form onSubmit={handleSearch}>
           <input
@@ -51,6 +52,7 @@ const TableLayout = () => {
                   <th>No of Volunteer needed</th>
                   <th>Location</th>
                   <th>Deadline</th>
+                  <th>Action</th>
                 </tr>
               </thead>
 
@@ -71,6 +73,13 @@ const TableLayout = () => {
                     <td>{myPost.volunteers} </td>
                     <td>{myPost.location} </td>
                     <td>{myPost.deadline_time} </td>
+                    <td>
+                       <Link to={`/viewDetails/${myPost._id}`} className="w-full">
+                        <button className="btn bg-[#ff5252] btn-sm w-full text-white">
+                          View Details
+                        </button>
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>
