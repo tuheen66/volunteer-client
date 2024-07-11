@@ -6,7 +6,7 @@ const NeedVolunteerCard = ({ volunteer }) => {
   const { _id, photo, volunteers,location, post_title, category, deadline_time } = volunteer;
 
   return (
-    <div className="card card-compact  bg-base-100 shadow-xl shadow-gray-400">
+    <div className="card card-compact  bg-base-100 shadow-xl shadow-gray-400 duration-500 transition hover:scale-105">
       <figure>
         <img src={photo} alt="" />
       </figure>

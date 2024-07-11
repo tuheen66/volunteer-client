@@ -23,7 +23,7 @@ const Home = () => {
           Volunteers Need Now
         </h2>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-12">
           {volunteers.map((volunteer) => (
             <VolunteerCardHome
               key={volunteer._id}

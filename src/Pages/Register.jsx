@@ -22,6 +22,16 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    if (!/^(?=.*[a-z])(?=.*[A-Z]).{6}$/.test(password)) {
+      Swal.fire({
+        title: " Oops!",
+        text: " Your password must contain one Uppercase letter, one lowercase letter and should be at least 6 characters long",
+        icon: "error",
+        button: "oh no!",
+      });
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         console.log(result.user);

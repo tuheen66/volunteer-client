@@ -20,7 +20,7 @@ const GridLayout = () => {
 
     form.reset();
 
-    
+
   };
 
   return (
@@ -42,7 +42,7 @@ const GridLayout = () => {
           />
         </form>
       </div>
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-12">
         {volunteers.map((volunteer) => (
           <NeedVolunteerCard
             key={volunteer._id}

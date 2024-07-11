@@ -29,7 +29,7 @@ const NeedVolunteer = () => {
             tabIndex === 0 ? "border " : ""
           }   mb-4 dark:border-gray-600 dark:text-gray-900`}
         >
-          <span>
+          <span className="text-gray-500">
             <TfiLayoutGrid3Alt />
           </span>
         </Link>
@@ -41,7 +41,7 @@ const NeedVolunteer = () => {
             tabIndex === 1 ? "border " : ""
           } mb-4 dark:border-gray-600 dark:text-gray-900`}
         >
-          <span className="text-xl">
+          <span className="text-xl text-gray-500">
             <MdTableRows />
           </span>
         </Link>
