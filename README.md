@@ -1,8 +1,14 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Name of the website : BENEVO
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Live site Url : https://benevo-8b9b0.web.app
+
+<!-- Features -->
+
+# I use React Js in front en and Express and MongoDb in the Backend
+# Used CRUD to upload and read data to and from the database
+# Used JWT to secure api
+# Used Firebase to authenticate and monitor users
+# Used Private routes to secure special routes
+# Implemented Dark and Light theme to all of the site
