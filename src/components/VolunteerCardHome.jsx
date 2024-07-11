@@ -8,7 +8,7 @@ const VolunteerCardHome = ({ volunteer }) => {
   const { _id, photo, post_title, category, deadline_time } = volunteer;
 
   return (
-    <div className="card card-compact  bg-base-100 shadow-xl">
+    <div className="card card-compact  bg-base-100 shadow-xl shadow-gray-400">
       <figure>
         <img src={photo} alt="Shoes" />
       </figure>

@@ -1,15 +1,34 @@
 import { useLoaderData } from "react-router-dom";
 import NeedVolunteerCard from "./NeedVolunteerCard";
+import { useState } from "react";
 
 const GridLayout = () => {
-  const volunteers = useLoaderData();
+  const loadedVolunteers = useLoaderData();
+
+  const [volunteers, setVolunteers] = useState(loadedVolunteers);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const searchText = e.target.search.value;
+
+      const searchVolunteer = loadedVolunteers.filter(
+      (vol) => vol.post_title === searchText
+    );
+
+    setVolunteers(searchVolunteer);
+
+    form.reset();
+
+    
+  };
 
   return (
     <div className="">
       <h2 className="text-3xl font-bold text-center mb-4">Need Volunteers</h2>
 
       <div className="mb-8 text-center">
-        <form>
+        <form onSubmit={handleSearch}>
           <input
             className="border-2 border-gray-300 px-4 py-3 rounded-lg"
             type="text"
