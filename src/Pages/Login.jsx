@@ -65,11 +65,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-[80%] mx-auto items-center gap-12">
+    <div className="flex w-[80%] mx-auto items-center ">
       <Helmet>
         <title>Benevo | Login</title>
       </Helmet>
-      <div className="w-[50%] bg-gray-200 p-8 mx-auto text-gray-700 my-8 rounded-lg">
+      <div className=" lg:w-[50%] bg-gray-200 p-8  mx-auto text-gray-700 my-8 rounded-lg">
         <h2 className="text-center text-3xl font-bold">Please Login</h2>
 
         <form onSubmit={handleSignIn} className="form-action">

@@ -83,7 +83,7 @@ const UpdateVolunteerPost = () => {
       </h2>
 
       <div className="w-[80%] gap-16 justify-between items-center mx-auto">
-        <div className="   p-8 w-1/2 border-2 mx-auto border-gray-300 rounded-lg">
+        <div className="   p-8 lg:w-1/2 border-2 mx-auto border-gray-300 rounded-lg">
           <form onSubmit={handleUpdatePost}>
             <label htmlFor="title">Post Title:</label>
             <input
@@ -128,8 +128,8 @@ const UpdateVolunteerPost = () => {
             <br />
             <br />
 
-            <div className="flex justify-between gap-8">
-              <div className="w-1/2">
+            <div className="flex flex-col lg:flex-row justify-between gap-8">
+              <div className="lg:w-1/2">
                 <label htmlFor="location">Location</label>
                 <input
                   className="w-full p-2 rounded-lg border-2 border-gray-300"
@@ -141,7 +141,7 @@ const UpdateVolunteerPost = () => {
                   required
                 />
               </div>
-              <div className="w-1/2">
+              <div className="lg:w-1/2">
                 <label htmlFor="number-of-volunteers">
                   No of Volunteers Needed:
                 </label>
@@ -197,7 +197,7 @@ const UpdateVolunteerPost = () => {
             />
             <br />
             <br />
-            <div className="flex justify-between mb-4">
+            <div className="flex flex-col md:flex-row justify-between mb-4">
               <div>
                 <label htmlFor="current_time">Current Time: </label>
                 <br />

@@ -55,7 +55,7 @@ const Register = () => {
       <Helmet>
         <title>Benevo | Register</title>
       </Helmet>
-      <div className="w-[50%] bg-gray-200 p-8  mx-auto text-gray-700 my-8 rounded-lg">
+      <div className=" lg:w-[50%] bg-gray-200 p-8  mx-auto text-gray-700 my-8 rounded-lg">
         <h2 className="text-center text-3xl font-bold">Please Register</h2>
 
         <form onSubmit={handleRegister} className="form-action">

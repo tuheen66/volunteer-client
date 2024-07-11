@@ -23,7 +23,7 @@ const Home = () => {
           Volunteers Need Now
         </h2>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {volunteers.map((volunteer) => (
             <VolunteerCardHome
               key={volunteer._id}
@@ -33,7 +33,7 @@ const Home = () => {
         </div>
         <div className="my-8 text-center w-full">
           <Link to="/needVolunteer">
-            <button className="btn bg-[#cc8e35] w-1/4 text-white text-xl hover:bg-[#ff5252]">
+            <button className="btn bg-[#cc8e35] md:w-1/4 text-white text-xl hover:bg-[#ff5252]">
               See All
             </button>
           </Link>
@@ -42,9 +42,9 @@ const Home = () => {
       <h2 className="text-center text-2xl font-semibold">
         Subscribe to our Newsletter to know about our upcoming charity events
       </h2>
-      <div className="mb-8  mx-auto flex justify-between items-center pl-8 ">
+      <div className="mb-8  mx-auto flex flex-col lg:flex-row justify-between items-center pl-8 ">
         <NewsLetters></NewsLetters>
-        <div className="w-[66%]">
+        <div className="w-full lg:w-[66%]">
           <Slider></Slider>
         </div>
       </div>
